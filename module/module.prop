@@ -1,0 +1,6 @@
+id=oat_opt_exclude
+name=AOT Compilation Exclusion
+version=v1.0
+versionCode=3
+author=ziad_mrx
+description=Excludes specific packages from system AOT compilation, put your package names (each in a line) in /data/aot_excluded.list
