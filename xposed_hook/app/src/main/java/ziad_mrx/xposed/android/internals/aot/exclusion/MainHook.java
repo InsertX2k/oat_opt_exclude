@@ -52,6 +52,7 @@ public class MainHook implements IXposedHookLoadPackage {
                         for (String pn : excludedPkgsList) {
                             if (pn.equalsIgnoreCase(pkg)) {
                                 param.setResult(DEX_OPT_SKIPPED);
+                                break;
                             }
                         }
                     } else {
@@ -98,12 +99,13 @@ public class MainHook implements IXposedHookLoadPackage {
             String line;
             while ((line = bufferedFileReader.readLine()) != null) {
                 // append package name:
-                _excludedPkgs.add(line);
+                _excludedPkgs.add(line.trim());
                 XposedBridge.log(TAG + "Excluding package from AOT Compilation: " + line);
             }
             bufferedFileReader.close();
             return _excludedPkgs;
         } catch (IOException ioe) {
+            try {bufferedFileReader.close();} catch (IOException fdcioe) {XposedBridge.log(TAG + "IOException while trying to handle another I/O Exception!: " + fdcioe.getMessage());}
             XposedBridge.log(TAG + "IOException occured!: " + ioe.getMessage());
             return null;
         }
