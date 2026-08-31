@@ -1,6 +1,11 @@
 # oat_opt_exclude
 Exclude certain packages from Android System's AOT compilation processes.
 
+## Devices tested on
+This Xposed module has been tested to work properly on Android 11, but the hook that's in here is designed to handle Android 16/17's new methods signatures too.
+If it did not work for you, please open an issue, stating your Android version, I'd be happy to help.
+
+
 ## But why?
 Because for some apps Android doesn't tend to respect their bundled pre-built AOTs (`.vdex`, `.odex` files) and instead re-build its own copy in `/data/app/<some-hash>/package-name/oat`, which tends to eat up more disk space, and that's a concern for low storage devices like the A20s.
 Plus: <br>
